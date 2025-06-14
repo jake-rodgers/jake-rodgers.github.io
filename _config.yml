@@ -17,12 +17,12 @@ minimal: false             # use a dark header
 
 navigation:                # accepts {file, title, url, icon, sidebaricon}
   - {file: "index.html", title: "Home"}
-  - {file: "assets/CV_W25.pdf", title: "CV"}
+  - {file: "CV_W25.pdf", title: "CV"}
 
 external:                  # shows a footer with social links - for available icons see fontawesome.com/icons
   - {title: Mail, icon: envelope, url: "mailto:rodgerja@oregonstate.edu"}
   # - {title: Github, icon: github, url: "https://github.com/niklasbuschmann/contrast"}
-  - {title: LinkedIn, icon: linkedin, url: "/https://www.linkedin.com/in/jacobrodgers24/"}
+  - {title: LinkedIn, icon: linkedin, url: "https://www.linkedin.com/in/jacobrodgers24/"}
 
 comments:
 #  disqus_shortname: ""    # see https://disqus.com/
