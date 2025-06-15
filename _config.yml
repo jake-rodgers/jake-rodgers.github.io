@@ -16,7 +16,7 @@ minimal: false             # use a dark header
 # Menu
 
 navigation:                # accepts {file, title, url, icon, sidebaricon}
-  - {file: "index.html", title: "Home"}
+  # - {file: "index.html", title: "Home"} # getting rid of Home buttom since my name already does that
   - {file: "cv.html", title: "CV"}
   - {file: "blog.html", title: "Blog"} # coming soon
 
