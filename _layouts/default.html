@@ -36,6 +36,7 @@
 
 {% if site.external %}
 <footer>
+  <div><i class="{{ site.footer_icon }}"></i></div>
   <div>{{ site.description | default: site.title }}</div>
   {% include menu.html menu=site.external %}
 </footer>
