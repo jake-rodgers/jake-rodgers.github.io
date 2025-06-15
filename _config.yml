@@ -1,7 +1,6 @@
 title: "Jacob Rodgers"
 author: "Jacob Rodgers"
-description: # ""
-footer_icon: "fa-solid fa-atom"
+description: ""
 permalink: /:title/
 lang: "en"
 excerpt_separator: "\n\n\n"
