@@ -3,8 +3,6 @@ title: More about me!
 layout: post
 ---
 
-### Hey!
-
 
 Welcome to the more in-depth “about me” post (see the home page for the short story)!
 As seen on the home page, I am currently a graduate student at [Oregon State University](https://physics.oregonstate.edu/), after completing my undergraduate degree at 
