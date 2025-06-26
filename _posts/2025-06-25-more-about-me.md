@@ -12,7 +12,7 @@ As seen on the home page, I am currently a graduate student at [Oregon State Uni
 I was born and raised in Michigan, and currently live in Corvallis, Oregon. 
 
 
-I am the middle child of a wonderfully excitable family, which includes my older brother, younger sister, and our crazy dog, Doogie. I have been incredibly lucky to have friends and family who have shaped me in more ways than I can count. I undoubtedly wouldn’t be the person I am today without them—most (if not all) of my growth and character can be traced back to their support, encouragement, and the way they always help keep me centered on what really matters. [See the photo of Doogie](/photos/#doogie)
+I am the middle child of a wonderfully excitable family, which includes my older brother, younger sister, and our crazy dog, Doogie. I have been incredibly lucky to have friends and family who have shaped me in more ways than I can count. I undoubtedly wouldn’t be the person I am today without them—most (if not all) of my growth and character can be traced back to their support, encouragement, and the way they always help keep me centered on what really matters. [See a photo of Doogie](/photos/#doogie)
 
 
 Sports have been a big part of my life. Soccer is my number one (and always will be), and I’m doing my best to stay active as life gets busier. [See a photo of me playing soccer](/photos/#soccer)
