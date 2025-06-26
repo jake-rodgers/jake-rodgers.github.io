@@ -14,7 +14,7 @@ I was born and raised in Michigan, and currently live in Corvallis, Oregon.
 I am the middle child of a wonderfully excitable family, which includes my older brother, younger sister, and our crazy dog, Doogie. I have been incredibly lucky to have friends and family who have shaped me in more ways than I can count. I undoubtedly wouldn’t be the person I am today without them—most (if not all) of my growth and character can be traced back to their support, encouragement, and the way they always help keep me centered on what really matters.
 
 <center>
-  <img src="/assets/images/doogie.JPG" alt="Doogie" style="width: 200px; height: 300px" />Add commentMore actions
+  <img src="/assets/images/doogie.JPG" alt="Doogie" style="width: 200px; height: 300px" />
 </center>
 
 
