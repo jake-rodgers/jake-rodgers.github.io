@@ -21,7 +21,7 @@ Sports have been a big part of my life. Soccer is my number one (and always will
 In the long run, I hope to be an educator—someone students can rely on, connect with, and look up to in more than just the context of physics. I’ve been incredibly fortunate to have amazing teachers, coaches, and mentors who’ve been essential to my personal and professional growth. And I can only hope to one day pay that forward.
 
 
-Now you know a little more about me…sorry!
+Now you know a little more about me!
 
 
 
