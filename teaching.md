@@ -10,7 +10,7 @@ permalink: /teaching/
   <img src="/assets/images/osu-logo.png" alt="Oregon State University Logo" style="height: 3em; flex-shrink:0;">
 
   <div>
-    <h2>🧑‍🏫 General Physics (Algebra-Based), Recitation (2024-Current)</h2>
+    <h2>General Physics (Algebra-Based), Recitation (2024-Current)</h2>
     <p><strong>Institution:</strong> Oregon State University</p>
     <p><strong>Role:</strong> Graduate Teaching Assistant</p>
 
@@ -30,7 +30,7 @@ permalink: /teaching/
   <img src="/assets/images/msu-logo.png" alt="Michigan State University Logo" style="height: 3em; flex-shrink:0;">
 
   <div>
-    <h2>💻 Projects and Practices in Physics, Mechanics (2022-2024)</h2>
+    <h2>Projects and Practices in Physics, Mechanics (2022-2024)</h2>
     <p><strong>Institution:</strong> Michigan State University</p>
     <p><strong>Role:</strong> Undergraduate Learning Assistant</p>
 
