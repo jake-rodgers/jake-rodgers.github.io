@@ -39,7 +39,7 @@ permalink: /teaching/
     <h3>Overview</h3>
     <p>Projects & Practices in Physics is a transformed introductory calculus-based physics course that engages students in scientific practice through the use of modeling projects. Students work in groups to solve complex problems using analytical techniques as well as using <a href="https://www.vpython.org/">computational modeling software</a>. Instructors act as learning facilitators by encouraging students to discuss and debate physics concepts and problem-solving strategies.<sup>2</sup></p>
 
-    <p>As a learning assistant in this course, you act as the students’ sole physics facilitator through their exploration of these complex in-class problems. A major responsibility, along with guiding the students in class, is providing weekly feedback to each of your student groups. This feedback often focuses on cultivating more collaborative and effective group environments for student learning.</p>
+    <p>As a learning assistant in this course, you act as the students’ sole physics facilitator through their exploration of these complex in-class problems. A major responsibility, aside from guiding the students in class, is providing weekly feedback to each of your student groups. This feedback often focuses on cultivating more collaborative and effective group environments for student learning.</p>
   </div>
 
 </div>
