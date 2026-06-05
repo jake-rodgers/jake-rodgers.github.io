@@ -5,10 +5,12 @@ permalink: /teaching/
 ---
 
 <!-- # Teaching Experience -->
+<div style="display:flex; align-items:flex-start; gap:20px; margin-bottom:20px;">
+  <img src="/assets/images/osu-logo.png"
+       alt="Oregon State University Logo"
+       style="height:60px; width:auto; flex-shrink:0;">
 
-<img src="/assets/images/osu-logo.png"
-     alt="Oregon State University Logo"
-     style="height:60px; width:auto; max-width:none; float:left; margin-right:15px;">
+  <div>
 
 ### General Physics (Algebra-Based), Recitation *2024–Present* 
 **Institution:** Oregon State University  
@@ -19,11 +21,15 @@ This class aims to not only teach about the wonders of physics but also build sk
 
 In this course, recitation provides an additional opportunity for students to practice physics in a collaborative environment. As a recitation instructor, I support group work interactions, connect student intuitions to formal physics concepts, and help students translate mathematical representations into meaningful physical interpretations.
 
+  </div>
+</div>
 
+<div style="display:flex; align-items:flex-start; gap:20px; margin-bottom:20px;">
+  <img src="/assets/images/msu-logo.png"
+       alt="Oregon State University Logo"
+       style="height:60px; width:auto; flex-shrink:0;">
 
-<img src="/assets/images/msu-logo.png"
-     alt="Michigan State University Logo"
-     style="height:60px; width:auto; max-width:none; float:left; margin-right:15px;">
+  <div>
 
 ### Projects and Practices in Physics, Mechanics *2022–2024*  
 **Institution:** Michigan State University  
@@ -33,6 +39,9 @@ In this course, recitation provides an additional opportunity for students to pr
 Projects & Practices in Physics is a transformed introductory calculus-based physics course that engages students in scientific practice through modeling projects. Students work collaboratively to solve complex problems using analytical techniques and computational modeling tools. Instructors act as learning facilitators, encouraging discussion and debate around physics concepts and problem-solving strategies.<sup>2</sup>
 
 As a Learning Assistant, I served as the primary facilitator for student groups during class activities. In addition to supporting students' conceptual development, I provided weekly written feedback focused on strengthening collaboration, communication, and productive group dynamics.
+
+  </div>
+</div>
 
 # Awards
 
