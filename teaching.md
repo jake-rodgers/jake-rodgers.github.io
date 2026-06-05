@@ -41,8 +41,21 @@ permalink: /teaching/
 
     <p>As a learning assistant in this course, you act as the students’ sole physics facilitator through their exploration of these complex in-class problems. A major responsibility, aside from guiding the students in class, is providing weekly feedback to each of your student groups. This feedback often focuses on cultivating more collaborative and effective group environments for student learning.</p>
   </div>
-
 </div>
+
+<!-- Awards -->
+<h2>Awards</h2>
+<ul style="list-style: none; padding: 0;">
+  <li style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+    <span>Oregon State University — Graduate Teaching Assistant Award, Honorable Mention</span>
+    <span style="flex-shrink: 0; margin-left: 16px;">2026</span>
+  </li>
+  <li style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+    <span>Michigan State University — Undergraduate Learning Assistant Award</span>
+    <span style="flex-shrink: 0; margin-left: 16px;">2024</span>
+  </li>
+</ul>
+
 
 <!-- Footnotes -->
 <p><sup>1</sup> First part of overview taken from <a href="https://boxsand.physics.oregonstate.edu/ph20x-introduction">Physics 20x Introduction</a> website.</p>
