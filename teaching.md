@@ -7,7 +7,7 @@ permalink: /teaching/
 <!-- # Teaching Experience -->
 <img src="/assets/images/osu-logo.png"
      alt="Oregon State University Logo"
-     height="40">
+     style="height:40px; width:auto; max-width:none; margin-right:15px;">
 
 
 ### General Physics (Algebra-Based), Recitation *2024–Present* 
@@ -21,7 +21,7 @@ In this course, recitation provides an additional opportunity for students to pr
 
 <img src="/assets/images/msu-logo.png"
      alt="Michigan State University Logo"
-     height="40">
+     style="height:40px; width:auto; max-width:none;  margin-right:15px;">
 
 
 
