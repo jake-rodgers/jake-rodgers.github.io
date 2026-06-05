@@ -4,7 +4,7 @@ title: "Research"
 permalink: /research/
 ---
 
-# Research Projects
+<!-- # Research Projects -->
 
 ### Modeling Pathways Through the Physics Major at Oregon State *[March 2025 — Present]*  
 Conducted quantitative analysis of student enrollment and performance data to represent pathways through the physics major at
