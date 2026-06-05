@@ -8,8 +8,7 @@ permalink: /teaching/
 
 <img src="/assets/images/osu-logo.png"
      alt="Oregon State University Logo"
-     height="60"
-     style="float:left; margin-right:15px;">
+     style="height:60px; width:auto; max-width:none; float:left; margin-right:15px;">
 
 ### General Physics (Algebra-Based), Recitation *2024–Present* 
 **Institution:** Oregon State University  
@@ -20,13 +19,11 @@ This class aims to not only teach about the wonders of physics but also build sk
 
 In this course, recitation provides an additional opportunity for students to practice physics in a collaborative environment. As a recitation instructor, I support group work interactions, connect student intuitions to formal physics concepts, and help students translate mathematical representations into meaningful physical interpretations.
 
-<div style="clear: both;"></div>
 
 
 <img src="/assets/images/msu-logo.png"
      alt="Michigan State University Logo"
-     height="60"
-     style="float:left; margin-right:15px;">
+     style="height:60px; width:auto; max-width:none; float:left; margin-right:15px;">
 
 ### Projects and Practices in Physics, Mechanics *2022–2024*  
 **Institution:** Michigan State University  
