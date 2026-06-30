@@ -1,6 +1,9 @@
 
 <meta charset="UTF-8">
 <style>
+  body {
+    background-color: white;
+  }
   .sim-wrap { padding: 1rem 0; font-family: var(--font-sans); }
   .controls { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 1.5rem; align-items: flex-end; }
   .ctrl-group { display: flex; flex-direction: column; gap: 4px; }
@@ -137,9 +140,8 @@ function drawTrack() {
 
   ctx.clearRect(0, 0, cw, ch);
 
-  const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const trackColor = isDark ? '#555' : '#ccc';
-  const labelColor = isDark ? '#aaa' : '#888';
+  const trackColor = '#888';
+  const labelColor = '#444';
   const ballAColor = '#2a78d6';
   const ballBColor = '#1baf7a';
 
@@ -168,7 +170,7 @@ function drawTrack() {
   ctx.fillText('A (flat)', pad, trackAY - 10);
   ctx.fillText('B (dip)', pad, trackBY - 10);
 
-  ctx.fillStyle = isDark ? '#444' : '#eee';
+  cctx.fillStyle = '#eee';
   ctx.fillRect(pad - 6, trackAY - 4, 8, 8);
   ctx.fillRect(cw - pad - 2, trackAY - 4, 8, 8);
   ctx.fillRect(pad - 6, trackBY - 4, 8, 8);
