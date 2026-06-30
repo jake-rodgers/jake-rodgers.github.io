@@ -1,0 +1,307 @@
+
+<meta charset="UTF-8">
+<style>
+  .sim-wrap { padding: 1rem 0; font-family: var(--font-sans); }
+  .controls { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 1.5rem; align-items: flex-end; }
+  .ctrl-group { display: flex; flex-direction: column; gap: 4px; }
+  .ctrl-group label { font-size: 13px; color: var(--text-secondary); }
+  .ctrl-group .val { font-size: 14px; font-weight: 500; color: var(--text-primary); }
+  .ctrl-group input[type=range] { width: 140px; }
+  .btn-row { display: flex; gap: 8px; margin-bottom: 1.25rem; }
+  canvas { width: 100%; border-radius: var(--radius); border: 0.5px solid var(--border); display: block; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 1rem; }
+  .stat-card { background: var(--surface-1); border-radius: var(--radius); padding: 0.75rem 1rem; }
+  .stat-card .lbl { font-size: 12px; color: var(--text-muted); margin-bottom: 2px; }
+  .stat-card .num { font-size: 20px; font-weight: 500; color: var(--text-primary); }
+  .winner-banner { text-align: center; font-size: 15px; font-weight: 500; padding: 0.6rem; border-radius: var(--radius); margin-bottom: 0.75rem; display: none; }
+  .winner-a { background: var(--bg-accent); color: var(--text-accent); }
+  .winner-b { background: var(--bg-success); color: var(--text-success); }
+  .winner-tie { background: var(--bg-warning); color: var(--text-warning); }
+</style>
+
+<div class="sim-wrap">
+  <h2 class="sr-only">Ball race simulation: flat track A vs dip track B</h2>
+
+  <div class="controls">
+    <div class="ctrl-group">
+      <label>Dip depth h (m)</label>
+      <input type="range" id="hSlider" min="0.1" max="20" step="0.1" value="2">
+      <span class="val" id="hVal">2.0 m</span>
+    </div>
+    <div class="ctrl-group">
+      <label>Dip width w (m)</label>
+      <input type="range" id="wSlider" min="0.5" max="15" step="0.5" value="4">
+      <span class="val" id="wVal">4.0 m</span>
+    </div>
+    <div class="ctrl-group">
+      <label>Initial speed (m/s)</label>
+      <input type="range" id="vSlider" min="0.5" max="5" step="0.1" value="1.5">
+      <span class="val" id="vVal">1.5 m/s</span>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button id="startBtn" onclick="startRace()">Start race ↗</button>
+    <button id="resetBtn" onclick="resetRace()">Reset</button>
+  </div>
+
+  <div class="winner-banner" id="winnerBanner"></div>
+
+  <canvas id="raceCanvas" height="220"></canvas>
+
+  <div class="stats">
+    <div class="stat-card">
+      <div class="lbl">Ball A time</div>
+      <div class="num" id="timeA">—</div>
+    </div>
+    <div class="stat-card">
+      <div class="lbl">Ball B time</div>
+      <div class="num" id="timeB">—</div>
+    </div>
+    <div class="stat-card">
+      <div class="lbl">Time difference</div>
+      <div class="num" id="timeDiff">—</div>
+    </div>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('raceCanvas');
+const ctx = canvas.getContext('2d');
+
+const TRACK_LEN = 15;
+const L1 = 3;
+const L2 = 3;
+const g = 1;
+
+let animId = null;
+let simTime = 0;
+let running = false;
+let finishedA = false, finishedB = false;
+let timeA = null, timeB = null;
+let simDt = 0.02;
+
+function getParams() {
+  return {
+    h: parseFloat(document.getElementById('hSlider').value),
+    w: parseFloat(document.getElementById('wSlider').value),
+    v0: parseFloat(document.getElementById('vSlider').value),
+  };
+}
+
+function dipStart() { return L1; }
+function dipEnd() { return L1 + getParams().w; }
+function totalLen() { return L1 + getParams().w + L2; }
+
+function speedInDip(v0, h) {
+  return Math.sqrt(v0 * v0 + 2 * g * h);
+}
+
+function getBallBPos(t) {
+  const { h, w, v0 } = getParams();
+  const vFast = speedInDip(v0, h);
+  const ds = dipStart(), de = dipEnd();
+  const tToDs = ds / v0;
+  if (t <= tToDs) return t * v0;
+  const tInDip = (t - tToDs);
+  const xInDip = tInDip * vFast;
+  if (xInDip <= w) return ds + xInDip;
+  const tExitDip = tToDs + w / vFast;
+  const tAfter = t - tExitDip;
+  return de + tAfter * v0;
+}
+
+function getBallAPos(t) {
+  return t * getParams().v0;
+}
+
+function worldToCanvas(xWorld, yWorld, total, cw, ch) {
+  const pad = 30;
+  const drawW = cw - pad * 2;
+  const cx = pad + (xWorld / total) * drawW;
+  const cy = yWorld;
+  return [cx, cy];
+}
+
+function drawTrack() {
+  const { h, w } = getParams();
+  const cw = canvas.width;
+  const ch = canvas.height;
+  const total = totalLen();
+  const pad = 30;
+  const drawW = cw - pad * 2;
+
+  const trackAY = ch * 0.3;
+  const trackBY = ch * 0.62;
+  const dipBottomY = trackBY + (h / 20) * ch * 0.28;
+
+  ctx.clearRect(0, 0, cw, ch);
+
+  const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const trackColor = isDark ? '#555' : '#ccc';
+  const labelColor = isDark ? '#aaa' : '#888';
+  const ballAColor = '#2a78d6';
+  const ballBColor = '#1baf7a';
+
+  function wx(x) { return pad + (x / total) * drawW; }
+
+  ctx.strokeStyle = trackColor;
+  ctx.lineWidth = 2;
+
+  ctx.beginPath();
+  ctx.moveTo(pad, trackAY);
+  ctx.lineTo(cw - pad, trackAY);
+  ctx.stroke();
+
+  const ds = dipStart(), de = dipEnd();
+  ctx.beginPath();
+  ctx.moveTo(pad, trackBY);
+  ctx.lineTo(wx(ds), trackBY);
+  ctx.lineTo(wx(ds), dipBottomY);
+  ctx.lineTo(wx(de), dipBottomY);
+  ctx.lineTo(wx(de), trackBY);
+  ctx.lineTo(cw - pad, trackBY);
+  ctx.stroke();
+
+  ctx.fillStyle = labelColor;
+  ctx.font = '12px var(--font-sans, sans-serif)';
+  ctx.fillText('A (flat)', pad, trackAY - 10);
+  ctx.fillText('B (dip)', pad, trackBY - 10);
+
+  ctx.fillStyle = isDark ? '#444' : '#eee';
+  ctx.fillRect(pad - 6, trackAY - 4, 8, 8);
+  ctx.fillRect(cw - pad - 2, trackAY - 4, 8, 8);
+  ctx.fillRect(pad - 6, trackBY - 4, 8, 8);
+  ctx.fillRect(cw - pad - 2, trackBY - 4, 8, 8);
+
+  ctx.fillStyle = labelColor;
+  ctx.font = '11px var(--font-sans, sans-serif)';
+  ctx.fillText('start', pad - 6, trackAY + 18);
+  ctx.fillText('finish', cw - pad - 14, trackAY + 18);
+
+  const hLabel = `h=${h.toFixed(1)}m`;
+  const hx = wx(de) + 6;
+  ctx.fillStyle = labelColor;
+  ctx.fillText(hLabel, hx, (trackBY + dipBottomY) / 2 + 4);
+
+  const wLabel = `w=${w.toFixed(1)}m`;
+  ctx.fillText(wLabel, wx(ds) + (wx(de) - wx(ds)) / 2 - 20, dipBottomY + 16);
+
+  return { trackAY, trackBY, dipBottomY, total, pad, drawW, wx, ballAColor, ballBColor };
+}
+
+function drawBalls(posA, posB) {
+  const { h, w } = getParams();
+  const cw = canvas.width;
+  const ch = canvas.height;
+  const total = totalLen();
+  const { trackAY, trackBY, dipBottomY, wx, ballAColor, ballBColor } = drawTrack();
+  const ds = dipStart(), de = dipEnd();
+  const r = 8;
+
+  const ax = wx(Math.min(posA, total));
+  ctx.beginPath();
+  ctx.arc(ax, trackAY, r, 0, Math.PI * 2);
+  ctx.fillStyle = ballAColor;
+  ctx.fill();
+
+  let bx, by;
+  const clampB = Math.min(posB, total);
+  if (clampB <= ds) {
+    bx = wx(clampB); by = trackBY;
+  } else if (clampB <= de) {
+    bx = wx(clampB); by = dipBottomY;
+  } else {
+    bx = wx(clampB); by = trackBY;
+  }
+  ctx.beginPath();
+  ctx.arc(bx, by, r, 0, Math.PI * 2);
+  ctx.fillStyle = ballBColor;
+  ctx.fill();
+}
+
+function resetRace() {
+  if (animId) cancelAnimationFrame(animId);
+  animId = null;
+  simTime = 0;
+  running = false;
+  finishedA = false; finishedB = false;
+  timeA = null; timeB = null;
+  document.getElementById('timeA').textContent = '—';
+  document.getElementById('timeB').textContent = '—';
+  document.getElementById('timeDiff').textContent = '—';
+  const banner = document.getElementById('winnerBanner');
+  banner.style.display = 'none';
+  canvas.width = canvas.offsetWidth;
+  drawBalls(0, 0);
+}
+
+function showWinner() {
+  const banner = document.getElementById('winnerBanner');
+  banner.className = 'winner-banner';
+  if (timeA !== null && timeB !== null) {
+    const diff = Math.abs(timeA - timeB);
+    if (diff < 0.01) {
+      banner.textContent = "It's a tie!";
+      banner.classList.add('winner-tie');
+    } else if (timeA < timeB) {
+      banner.textContent = `Ball A wins by ${diff.toFixed(2)}s`;
+      banner.classList.add('winner-a');
+    } else {
+      banner.textContent = `Ball B wins by ${diff.toFixed(2)}s`;
+      banner.classList.add('winner-b');
+    }
+    banner.style.display = 'block';
+
+    document.getElementById('timeA').textContent = timeA.toFixed(2) + 's';
+    document.getElementById('timeB').textContent = timeB.toFixed(2) + 's';
+    const diff2 = timeA - timeB;
+    document.getElementById('timeDiff').textContent = (diff2 > 0 ? '+' : '') + diff2.toFixed(2) + 's (A−B)';
+  }
+}
+
+function loop() {
+  const total = totalLen();
+  simTime += simDt;
+
+  const posA = getBallAPos(simTime);
+  const posB = getBallBPos(simTime);
+
+  if (!finishedA && posA >= total) { finishedA = true; timeA = simTime; }
+  if (!finishedB && posB >= total) { finishedB = true; timeB = simTime; }
+
+  canvas.width = canvas.offsetWidth;
+  drawBalls(posA, posB);
+
+  if (finishedA && finishedB) {
+    running = false;
+    showWinner();
+    return;
+  }
+
+  animId = requestAnimationFrame(loop);
+}
+
+function startRace() {
+  resetRace();
+  running = true;
+  animId = requestAnimationFrame(loop);
+}
+
+document.getElementById('hSlider').addEventListener('input', function() {
+  document.getElementById('hVal').textContent = parseFloat(this.value).toFixed(1) + ' m';
+  if (!running) resetRace();
+});
+document.getElementById('wSlider').addEventListener('input', function() {
+  document.getElementById('wVal').textContent = parseFloat(this.value).toFixed(1) + ' m';
+  if (!running) resetRace();
+});
+document.getElementById('vSlider').addEventListener('input', function() {
+  document.getElementById('vVal').textContent = parseFloat(this.value).toFixed(1) + ' m/s';
+  if (!running) resetRace();
+});
+
+canvas.width = canvas.offsetWidth;
+drawTrack();
+drawBalls(0, 0);
+</script>
