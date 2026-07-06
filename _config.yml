@@ -18,8 +18,10 @@ minimal: false             # use a dark header
 navigation:                # accepts {file, title, url, icon, sidebaricon}
   # - {file: "index.html", title: "Home"} # getting rid of Home buttom since my name already does that
   - {file: "cv.html", title: "CV"}
+  - {file: "teaching_portfolio.html", title: "Teaching Portfolio"}
   - {file: "teaching.md", title: "Teaching"}
   - {file: "research.md", title: "Research"}
+
   # - {file: "blog.html", title: "Blog"}
   # - {file: "photos.html", title: "Photo Gallery"}
 
